@@ -34,6 +34,8 @@ export const signup = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
+      secure: true,
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     }); // Set token in cookie for 1 hour
 
@@ -79,6 +81,8 @@ export const login = async (req, res) => {
     const token = generateToken(user._id, user.username); // Assuming _id is the unique identifier for the user
     res.cookie("token", token, {
       httpOnly: true,
+      secure: true,
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     }); // Set token in cookie for 1 hour
 
@@ -111,7 +115,11 @@ export const logout = async (req, res) => {
       });
     }
 
-    res.clearCookie("token");
+    res.clearCookie("token",{
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
 
     res.status(200).json({
       message: "User logged out successfully",
