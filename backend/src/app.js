@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://interview-ai-frontend-2115.onrender.com",
+    origin: "https://interview-ai-frontend01.onrender.com",
     credentials: true,
   }),
 );
