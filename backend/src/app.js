@@ -9,13 +9,16 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://interview-ai-frontend01.onrender.com",
+    origin: [
+      "https://interview-ai-frontend01.onrender.com",
+      "http://localhost:5173",
+    ],
     credentials: true,
   }),
 );
 
 /* using all the routes here */
 app.use("/api/auth", authRouter);
-app.use("/api/interview",interviewRouter)
+app.use("/api/interview", interviewRouter);
 
 export default app;
