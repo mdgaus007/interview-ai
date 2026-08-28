@@ -1,0 +1,144 @@
+$bg: #f8fafc;
+$panel-bg: #ffffff;
+$border: #e2e8f0;
+$text: #0f172a;
+$text-secondary: #334155;
+$text-muted: #64748b;
+$text-dim: #94a3b8;
+$primary: #4f46e5;
+$primary-hover: #4338ca;
+$error: #e11d48;
+
+.auth-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+  background: radial-gradient(circle at 50% 10%, rgba(79, 70, 229, 0.06) 0%, transparent 60%), $bg;
+  box-sizing: border-box;
+
+  .auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: $panel-bg;
+    border: 1px solid $border;
+    border-radius: 1rem;
+    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    box-sizing: border-box;
+
+    @media (max-width: 480px) {
+      padding: 1.75rem 1.25rem;
+      border-radius: 0.85rem;
+    }
+
+    .auth-header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+
+      .brand-badge {
+        display: inline-flex;
+        align-items: center;
+        align-self: center;
+        gap: 0.35rem;
+        background: #eef2ff;
+        border: 1px solid #c7d2fe;
+        color: $primary;
+        padding: 0.25rem 0.65rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+
+      .heading {
+        font-size: 1.6rem;
+        font-weight: 800;
+        margin: 0;
+        color: $text;
+        letter-spacing: -0.02em;
+      }
+
+      .subtitle {
+        font-size: 0.88rem;
+        color: $text-muted;
+        margin: 0;
+      }
+    }
+
+    .form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .input-box {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-size: 1rem;
+
+      label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: $text-secondary;
+      }
+
+      .input-box-field {
+        height: 2.75rem;
+        width: 100%;
+        outline: none;
+        border-radius: 0.5rem;
+        font-size: 0.95rem;
+        padding: 0.6rem 0.95rem;
+        border: 1px solid $border;
+        background: #ffffff;
+        color: $text;
+        font-family: inherit;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        box-sizing: border-box;
+
+        &::placeholder {
+          color: $text-dim;
+        }
+
+        &:focus {
+          border-color: $primary;
+          box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+        }
+      }
+    }
+
+    .auth-footer {
+      text-align: center;
+      padding-top: 0.75rem;
+      border-top: 1px solid $border;
+
+      p {
+        font-size: 0.88rem;
+        color: $text-muted;
+        margin: 0;
+
+        a {
+          color: $primary;
+          font-weight: 600;
+          margin-left: 0.35rem;
+
+          &:hover {
+            color: $primary-hover;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
