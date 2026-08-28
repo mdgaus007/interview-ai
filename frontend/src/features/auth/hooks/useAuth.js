@@ -13,8 +13,13 @@ export const useAuth = () => {
     try {
       const data = await login({ email, password });
       setUser(data.user);
+      return { success: true };
     } catch (err) {
       console.log(err);
+      return {
+        success: false,
+        message: err.response?.data?.message || "Invalid credentials",
+      };
     } finally {
       setLoading(false);
     }

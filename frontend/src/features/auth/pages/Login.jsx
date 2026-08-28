@@ -9,18 +9,26 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
+    if (error) setError("");
   };
   const handlePassword = (e) => {
     setPassword(e.target.value);
+    if (error) setError("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await handleLogin({ email, password });
-    navigate("/");
+    setError("");
+    const result = await handleLogin({ email, password });
+    if (result?.success) {
+      navigate("/");
+    } else {
+      setError(result?.message || "Account doesn't exist");
+    }
   };
 
   if (loading) {
@@ -43,6 +51,22 @@ function Login() {
         </header>
 
         <form className="form" onSubmit={handleSubmit}>
+          {error && (
+            <div
+              style={{
+                background: "#fff1f2",
+                border: "1px solid #fecdd3",
+                color: "#e11d48",
+                padding: "0.65rem 0.85rem",
+                borderRadius: "0.5rem",
+                fontSize: "0.85rem",
+                fontWeight: "600",
+                textAlign: "center",
+              }}
+            >
+              {error}
+            </div>
+          )}
           <div className="input-box">
             <label htmlFor="email">Email address</label>
             <input
