@@ -1,13 +1,14 @@
-$bg: #f8fafc;
-$panel-bg: #ffffff;
-$border: #e2e8f0;
-$text: #0f172a;
-$text-secondary: #334155;
-$text-muted: #64748b;
-$text-dim: #94a3b8;
-$primary: #4f46e5;
-$primary-hover: #4338ca;
-$error: #e11d48;
+$bg: #0f172a;
+$panel-bg: #1e293b;
+$border: #334155;
+$border-light: #475569;
+$text: #f8fafc;
+$text-secondary: #cbd5e1;
+$text-muted: #94a3b8;
+$text-dim: #64748b;
+$primary: #6366f1;
+$primary-hover: #4f46e5;
+$error: #f43f5e;
 
 .auth-page {
   min-height: 100vh;
@@ -16,7 +17,7 @@ $error: #e11d48;
   align-items: center;
   justify-content: center;
   padding: 2rem 1.25rem;
-  background: radial-gradient(circle at 50% 10%, rgba(79, 70, 229, 0.06) 0%, transparent 60%), $bg;
+  background-color: $bg;
   box-sizing: border-box;
 
   .auth-card {
@@ -24,17 +25,17 @@ $error: #e11d48;
     max-width: 420px;
     background: $panel-bg;
     border: 1px solid $border;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     padding: 2.25rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
 
     @media (max-width: 480px) {
       padding: 1.75rem 1.25rem;
-      border-radius: 0.85rem;
+      border-radius: 0.65rem;
     }
 
     .auth-header {
@@ -48,19 +49,19 @@ $error: #e11d48;
         align-items: center;
         align-self: center;
         gap: 0.35rem;
-        background: #eef2ff;
-        border: 1px solid #c7d2fe;
-        color: $primary;
-        padding: 0.25rem 0.65rem;
+        background: rgba(99, 102, 241, 0.15);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        color: #818cf8;
+        padding: 0.2rem 0.65rem;
         border-radius: 999px;
         font-size: 0.75rem;
-        font-weight: 700;
+        font-weight: 600;
         margin-bottom: 0.25rem;
       }
 
       .heading {
-        font-size: 1.6rem;
-        font-weight: 800;
+        font-size: 1.5rem;
+        font-weight: 700;
         margin: 0;
         color: $text;
         letter-spacing: -0.02em;
@@ -94,14 +95,14 @@ $error: #e11d48;
       }
 
       .input-box-field {
-        height: 2.75rem;
+        height: 2.65rem;
         width: 100%;
         outline: none;
-        border-radius: 0.5rem;
-        font-size: 0.95rem;
-        padding: 0.6rem 0.95rem;
+        border-radius: 0.45rem;
+        font-size: 0.92rem;
+        padding: 0.6rem 0.85rem;
         border: 1px solid $border;
-        background: #ffffff;
+        background: #0f172a;
         color: $text;
         font-family: inherit;
         transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -113,7 +114,7 @@ $error: #e11d48;
 
         &:focus {
           border-color: $primary;
-          box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+          box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
         }
       }
     }
@@ -124,7 +125,7 @@ $error: #e11d48;
       border-top: 1px solid $border;
 
       p {
-        font-size: 0.88rem;
+        font-size: 0.85rem;
         color: $text-muted;
         margin: 0;
 
@@ -134,7 +135,7 @@ $error: #e11d48;
           margin-left: 0.35rem;
 
           &:hover {
-            color: $primary-hover;
+            color: #818cf8;
             text-decoration: underline;
           }
         }

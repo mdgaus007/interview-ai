@@ -4,11 +4,10 @@ import { useInterview } from "../hooks/useInterview";
 import { useParams } from "react-router";
 import Navbar from "../../../components/Navbar.jsx";
 
-function CircularScore({ score = 0, size = 60, strokeWidth = 5 }) {
+function CircularScore({ score = 0, size = 58, strokeWidth = 5 }) {
   const normalizedRadius = (size - strokeWidth * 2) / 2;
   const circumference = normalizedRadius * 2 * Math.PI;
-  const strokeDashoffset =
-    circumference - (Math.min(Math.max(score, 0), 100) / 100) * circumference;
+  const strokeDashoffset = circumference - (score / 100) * circumference;
 
   return (
     <div
@@ -24,12 +23,14 @@ function CircularScore({ score = 0, size = 60, strokeWidth = 5 }) {
             x2="100%"
             y2="100%"
           >
-            <stop offset="0%" stopColor="#7c5cff" />
-            <stop offset="100%" stopColor="#ff4d8d" />
+            <stop offset="0%" stopColor="#818cf8" />
+            <stop offset="100%" stopColor="#6366f1" />
           </linearGradient>
         </defs>
         <circle
           className="circular-score-bg"
+          stroke="#334155"
+          fill="transparent"
           strokeWidth={strokeWidth}
           r={normalizedRadius}
           cx={size / 2}
@@ -38,6 +39,7 @@ function CircularScore({ score = 0, size = 60, strokeWidth = 5 }) {
         <circle
           className="circular-score-progress"
           stroke="url(#scoreGradient)"
+          fill="transparent"
           strokeWidth={strokeWidth}
           strokeDasharray={`${circumference} ${circumference}`}
           style={{ strokeDashoffset }}
