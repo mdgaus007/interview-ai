@@ -11,30 +11,47 @@ import Interview from "../models/interviewReport.model.js";
  * @access private
  */
 export const generateInterviewReportController = async (req, res) => {
-  const resumeContent = await new PDFParse({
-    data: Uint8Array.from(req.file.buffer),
-  }).getText();
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "Resume PDF is required" });
+    }
 
-  const { selfDescription, jobDescription } = req.body;
+    const resumeContent = await new PDFParse({
+      data: Uint8Array.from(req.file.buffer),
+    }).getText();
 
-  const interviewReportAI = await generateInterviewReport({
-    resume: resumeContent.text,
-    selfDescription,
-    jobDescription,
-  });
+    const { selfDescription, jobDescription } = req.body;
 
-  const interviewReport = await Interview.create({
-    user: req.user._id,
-    resumeText: resumeContent.text,
-    selfDescription,
-    jobDescription,
-    ...interviewReportAI,
-  });
+    const interviewReportAI = await generateInterviewReport({
+      resume: resumeContent.text,
+      selfDescription,
+      jobDescription,
+    });
 
-  res.status(201).json({
-    message: "Interview Report created successfully",
-    interviewReport,
-  });
+    if (!interviewReportAI || !interviewReportAI.title) {
+      return res.status(500).json({
+        message: "Failed to generate report from AI. Please try again.",
+      });
+    }
+
+    const interviewReport = await Interview.create({
+      user: req.user._id,
+      resumeText: resumeContent.text,
+      selfDescription,
+      jobDescription,
+      ...interviewReportAI,
+    });
+
+    res.status(201).json({
+      message: "Interview Report created successfully",
+      interviewReport,
+    });
+  } catch (error) {
+    console.error("Error in generateInterviewReportController:", error);
+    res.status(500).json({
+      message: error.message || "Internal server error",
+    });
+  }
 };
 
 /**
